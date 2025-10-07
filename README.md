@@ -206,14 +206,6 @@ quarto render template.qmd --to examtypst-typst \
   -M output-file:template-sol.pdf
 ```
 
-## 📋 Ejemplos
-
-Ver carpeta `tests/` para ejemplos completos:
-
-- `ejemplo-basico.qmd` - Examen básico
-- `ejemplo-completo.qmd` - Examen con todas las características
-- `ejemplo-matematicas.qmd` - Examen de matemáticas
-- `ejemplo-test.qmd` - Examen tipo test
 
 ## 🛠️ Configuración Avanzada
 
