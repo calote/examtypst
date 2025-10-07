@@ -8,6 +8,12 @@ Extensión de Quarto que facilita la creación de exámenes académicos profesio
 quarto add calote/examtypst
 ```
 
+O con un fichero quarto de ejemplo:
+
+```bash
+quarto use template calote/examtypst
+```
+
 ## ✨ Características
 
 - ✅ Cabecera institucional personalizable con logo
