@@ -1,0 +1,122 @@
+---
+format:
+  examtypst-typst:
+    escudo: "logo.png"
+    departamento: "Departamento de Matemáticas"
+    titulacion: "Grado en Matemáticas"
+    asignatura: "Cálculo I"
+    tipo-examen: "Parcial"
+    fecha-examen: "15 de Octubre de 2025"
+    mostrar-datos-estudiante: true
+    mostrar-soluciones: false
+    #output-file: "template-sol.pdf"
+    mostrar-ejercicio-cuadro: false
+    ejercicio-salto-linea: false
+---
+
+
+:::{.tabla-calificaciones arguments='ejercicios: (
+    (nombre: "Ejercicio 1", puntos: 3),
+    (nombre: "Ejercicio 2", puntos: 1.5),
+    (nombre: "Ejercicio 3", puntos: 1.5),
+    (nombre: "Ejercicio 4", puntos: 2),
+    (nombre: "Ejercicio 5", puntos: 2)
+)'}
+
+:::
+
+
+:::{.ejercicio arguments="puntos: 3"}
+Calcula el siguiente límite:
+
+$$\lim_{x \to 0} \frac{\sin(x)}{x}$$
+
+:::{.espacio-desarrollo arguments="lineas: 5, puntos: false"}
+
+hola
+:::
+
+:::{.solucion}
+Aplicando la regla de L'Hôpital o conociendo el límite notable:
+
+$$
+\lim_{x \to 0} \frac{\sin(x)}{x} = \lim_{x \to 0} \frac{\cos(x)}{1} = \frac{1}{1} = 1
+$$
+:::
+
+:::
+
+
+:::{.ejercicio arguments="puntos: 1.5"}
+Deriva las siguientes funciones:
+
+:::{.apartado}
+$f(x) = x^3 + 2x^2 - 5x + 1$
+
+:::{.solucion}
+$f'(x) = 3x^2 + 4x - 5$
+:::
+:::
+
+:::{.apartado}
+$g(x) = e^{2x}$
+
+:::{.solucion}
+$g'(x) = 2e^{2x}$
+:::
+
+:::
+
+:::
+
+:::{.ejercicio arguments="puntos: 1.5"}
+Deriva las siguientes funciones:
+
+:::{.apartado}
+$f(x) = 2x^3 + x^2 + 2x$
+
+:::{.solucion}
+$f'(x) = 6x^2 + 2x + 2$
+:::
+:::
+
+:::{.apartado}
+$g(x) = \log{2x}$
+
+:::{.solucion}
+$g'(x) = \frac{1}{x}$
+:::
+
+:::
+
+:::
+
+
+
+
+:::{.ejercicio arguments="puntos: 2"}
+Indica si las siguientes afirmaciones son verdaderas o falsas:
+
+:::{.verdadero-falso arguments='correcta: true'}
+La integral de una constante es una función lineal.
+:::
+
+:::{.verdadero-falso arguments='correcta: false'}
+La derivada de $x^2$ es $2x^2$.
+:::
+:::
+
+
+
+:::{.ejercicio arguments="puntos: 2"}
+Indica si las siguientes afirmaciones son verdaderas o falsas:
+
+:::{.verdadero-falso arguments='correcta: true, numeracion: true, tipo-numeracion: "letra"'}
+La derivada de una constante es cero.
+:::
+
+:::{.verdadero-falso arguments='correcta: false, numeracion: true, tipo-numeracion: "letra"'}
+$\int x dx = x^2 + C$
+:::
+:::
+

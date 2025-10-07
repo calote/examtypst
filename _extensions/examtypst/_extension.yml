@@ -1,0 +1,79 @@
+title: "examtypst: A Quarto extension for creating exams with Typst"
+author: Pedro Luque
+version: 0.2.0
+quarto-required: ">=1.6.0"
+editor:
+  tools:
+    lua-ls:
+      enabled: false
+contributes:
+  formats:
+    typst:
+      fig-format: "png"
+      
+      # Configuración básica
+      ejercicio-nombre: "ejercicio"
+      show-cabecera: true
+      show-solutions: false
+      #show-ejercicio-cuadro: false
+      show-student-data: false
+      ejercicio-salto-linea: true
+      
+      # Internacionalización
+      lang: "es"
+      i18n-support: true
+      
+      # Información institucional
+      # department: "Departamento"
+      # subject: "Asignatura"
+      # degree: "Grado"
+      # exam-type: "Examen"
+      # exam-date: "Fecha"
+      
+      # Campos de estudiante personalizables
+      #student-fields: ["Nombre", "Apellidos", "DNI", "Grupo"]
+      
+      # Tema (puede ser preset o custom)
+      theme-preset: "classic"
+      
+      # Configuración de página
+      margin:
+        top: 2cm
+        bottom: 2cm
+        left: 2cm
+        right: 2cm
+      papersize: a4
+      fontsize: 11
+      # Logo
+      logo: ""
+      
+      functions: 
+        - solucion
+        - pregunta
+        - ejercicio
+        - respuesta
+        - tabla-respuestas
+        - align
+        - MBox
+        - Mnewline
+        - apartado
+        - pregunta-multiple
+        - verdadero-falso
+        - espacio-desarrollo
+        - tabla-calificaciones
+        - t
+        - asociar-elementos
+        #- emparejar-simple
+        - texto-con-huecos
+        - respuesta-corta
+        - emparejar-mezclado
+        - completar-definiciones
+      
+      template-partials:
+        - typst-template.typ
+        - typst-show.typ
+        - i18n.typ
+      
+      filters:
+        - validate-params.lua
+        - _extensions/christopherkenny/typst-function/typst-function.lua        
