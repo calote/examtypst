@@ -259,10 +259,6 @@ Pedro Luque
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o pull request en el repositorio.
 
-## 📚 Documentación Adicional
-
-Para más información sobre las funciones disponibles y opciones de configuración, consulta los archivos de ejemplo en la carpeta `tests/`.
-
 ## ⚠️ Solución de Problemas
 
 ### Error: Logo no encontrado
