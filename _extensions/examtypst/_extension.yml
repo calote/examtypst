@@ -13,7 +13,7 @@ contributes:
       
       # Configuración básica
       ejercicio-nombre: "ejercicio"
-      show-cabecera: true
+      #show-cabecera: true
       show-solutions: false
       #show-ejercicio-cuadro: false
       show-student-data: false

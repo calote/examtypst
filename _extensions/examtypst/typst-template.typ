@@ -36,7 +36,12 @@
 #let exam-date = "$if(fecha-examen)$$fecha-examen$$elseif(exam-date)$$exam-date$$else$$endif$"
 #let show-solutions = "$if(mostrar-soluciones)$$mostrar-soluciones$$elseif(show-solutions)$$show-solutions$$else$false$endif$" == "true"
 #let show-ejercicio-cuadro = "$if(mostrar-ejercicio-cuadro)$$mostrar-ejercicio-cuadro$$elseif(show-ejercicio-cuadro)$$show-ejercicio-cuadro$$else$false$endif$" == "true"
-#let show-cabecera = "$if(mostrar-cabecera)$$mostrar-cabecera$$elseif(show-cabecera)$$show-cabecera$$else$true$endif$" == "true"
+//#let show-cabecera = "$if(mostrar-cabecera)$$mostrar-cabecera$$elseif(show-cabecera)$$show-cabecera$$else$false$endif$" == "true"
+//#let show-cabecera = "$if(mostrar-cabecera)$$mostrar-cabecera$$else$$if(show-cabecera)$$show-cabecera$$else$true$endif$$endif$" == "false"
+// ...existing code...
+#let show-cabecera = "$show-cabecera-effective$" == "true"
+// ...existing code...
+// ...existing code...
 #let show-student-data = "$if(mostrar-datos-estudiante)$$mostrar-datos-estudiante$$elseif(show-student-data)$$show-student-data$$else$false$endif$" == "true"
 #let lang = "$if(idioma)$$idioma$$elseif(lang)$$lang$$else$es$endif$"
 
