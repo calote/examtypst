@@ -675,8 +675,30 @@ $endif$
 //   v(0.3em)
 // }
 
-// Función para apartados con contador genérico
-#let apartado(letra: auto, tipo: "letra", body) = {
+// // Función para apartados con contador genérico
+// #let apartado(letra: auto, tipo: "letra", body) = {
+//   h(1em)
+  
+//   let etiqueta = aplicar-contador(
+//     contador-apartados, 
+//     tipo: tipo, 
+//     custom-label: letra
+//   )
+  
+//   context {
+//     if tipo == "punto" or etiqueta == "•" {
+//       text(fill: theme.text-color)[• #body]
+//     } else {
+//       text(weight: "bold", fill: theme.text-color)[#etiqueta) ] + text(fill: theme.text-color)[#body]
+//     }
+//   }
+//   v(0.3em)
+// }
+
+// ...existing code...
+
+// Función para apartados con contador genérico y puntos
+#let apartado(letra: auto, tipo: "letra", puntos: none, body) = {
   h(1em)
   
   let etiqueta = aplicar-contador(
@@ -686,16 +708,26 @@ $endif$
   )
   
   context {
-    if tipo == "punto" or etiqueta == "•" {
+    let contenido = if tipo == "punto" or etiqueta == "•" {
       text(fill: theme.text-color)[• #body]
     } else {
-      text(weight: "bold", fill: theme.text-color)[#etiqueta) ] + text(fill: theme.text-color)[#body]
+      text(weight: "bold", fill: theme.text-color)[#etiqueta) ]
+      if puntos != none {
+        let punto-text = if puntos == 1 {
+          t("punto", lang: lang)
+        } else {
+          t("puntos", lang: lang)
+        }
+        text(fill: theme.text-color)[(#puntos #punto-text) ]
+      }
+      text(fill: theme.text-color)[#body]
     }
+    contenido
   }
   v(0.3em)
 }
 
-
+// ...existing code...
 
 // Función para caja de respuesta simple
 #let respuesta(height: 3em, body) = {
