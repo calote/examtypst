@@ -330,20 +330,21 @@ Para reportar bugs o solicitar nuevas características, abre un issue en el repo
 
 
 - v 0.3.0 (10-10-2025) - Se ha añadido soporte para salida html (examtypst-html).
+    
+    Has creado un sistema de ejercicios y soluciones muy completo y profesional para usar con salida Html, con las siguientes características:
 
-  Has creado un sistema de ejercicios y soluciones muy completo y profesional para usar con salida Html, con las siguientes características:
+    ✨ **Características implementadas:**
+      
+    - Ejercicios numerados automáticamente con puntuación opcional
+    - Soluciones inline (inmediatas) o al final del documento
+    - Tres formatos de visualización:
+      - Normal (expandido)
+      - Colapsable (acordeón)
+      - Pestañas con badges (con toggle para abrir/cerrar)
+        - Placeholder informativo
+        - Estilos CSS personalizados y elegantes
+        - Animaciones suaves
+    - Totalmente configurable desde el YAML
 
-✨ **Características implementadas:**
-  - Ejercicios numerados automáticamente con puntuación opcional
-  - Soluciones inline (inmediatas) o al final del documento
-  - Tres formatos de visualización:
-    - Normal (expandido)
-    - Colapsable (acordeón)
-    - Pestañas con badges (con toggle para abrir/cerrar)
-      - Placeholder informativo
-      - Estilos CSS personalizados y elegantes
-      - Animaciones suaves
-  - Totalmente configurable desde el YAML
-
-  Es un filtro muy potente y versátil para documentos educativos en Quarto. 
+    Es un filtro muy potente y versátil para documentos educativos en Quarto. 
 
