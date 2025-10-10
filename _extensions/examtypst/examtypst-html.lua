@@ -191,6 +191,26 @@ local function addCustomCSS(meta)
 
 /* Estilos para soluciones colapsables... (resto del CSS) */
 
+/* ... estilos existentes ... */
+
+/* Ocultar numeración automática en ejercicios */
+.ejercicio > h2::before,
+.ejercicio > h3::before,
+.ejercicio > h4::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* También para headers dentro de ejercicios */
+.ejercicio h2 .header-section-number,
+.ejercicio h3 .header-section-number,
+.ejercicio h4 .header-section-number {
+  display: none !important;
+}
+
+/* ... resto de estilos ... */
+
+
 </style>
 ]]
   
@@ -505,35 +525,39 @@ local function createTabbedDocument(blocks, meta)
   local postExerciseBlocks = pandoc.List()
   
   local foundFirstExercise = false
-  local inExerciseSection = false
+  --local inExerciseSection = false
   
   for i, block in ipairs(exerciseBlocks) do
-    if block and block.t == "Div" and block.classes and block.classes:includes("ejercicio") then
-      if not foundFirstExercise then
-        foundFirstExercise = true
-        inExerciseSection = true
-      end
+    --if block and block.t == "Div" and block.classes and block.classes:includes("ejercicio") then
+      if block.t == "Div" and block.classes:includes("ejercicio") then
+      foundFirstExercise = true
       exerciseContentBlocks:insert(block)
-    elseif not foundFirstExercise then
-      preExerciseBlocks:insert(block)
-    elseif inExerciseSection then
-      local hasMoreExercises = false
-      for j = i + 1, #exerciseBlocks do
-        local futureBlock = exerciseBlocks[j]
-        if futureBlock and futureBlock.t == "Div" and futureBlock.classes and 
-           futureBlock.classes:includes("ejercicio") then
-          hasMoreExercises = true
-          break
-        end
-      end
+      -- if not foundFirstExercise then
+      --   foundFirstExercise = true
+      --   --inExerciseSection = true
+      -- end
+      --exerciseContentBlocks:insert(block)
+      elseif not foundFirstExercise then
+        preExerciseBlocks:insert(block)
+    -- elseif inExerciseSection then
+    --   local hasMoreExercises = false
+    --   for j = i + 1, #exerciseBlocks do
+    --     local futureBlock = exerciseBlocks[j]
+    --     if futureBlock and futureBlock.t == "Div" and futureBlock.classes and 
+    --        futureBlock.classes:includes("ejercicio") then
+    --       hasMoreExercises = true
+    --       break
+    --     end
+    --   end
       
-      if not hasMoreExercises then
-        inExerciseSection = false
-        postExerciseBlocks:insert(block)
+    --   if not hasMoreExercises then
+    --     inExerciseSection = false
+    --     postExerciseBlocks:insert(block)
+    --   end
+      else
+        --postExerciseBlocks:insert(block)
+        exerciseContentBlocks:insert(block)
       end
-    else
-      postExerciseBlocks:insert(block)
-    end
   end
   
   -- Añadir bloques pre-ejercicios
