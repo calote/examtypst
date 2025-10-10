@@ -74,7 +74,8 @@ format:
 ---
 ```
 
-- Ejemplo: HTML con [examtypst-html](https://github.com/calote/examtypst/blob/main/template.html)
+
+- Ejemplo: HTML con [examtypst-html](https://raw.githack.com/calote/examtypst/main/template.html)
 
 
 ## Uso de Parámetros YAML en Español y en Inglés
