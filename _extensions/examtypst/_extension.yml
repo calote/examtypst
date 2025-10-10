@@ -72,7 +72,6 @@ contributes:
       template-partials:
         - typst-template.typ
         - typst-show.typ
-        - i18n.typ
       
       filters:
         - validate-params.lua
