@@ -4,7 +4,7 @@
 
 
 // Importar sistema de traducciones
-#import "_extensions/examtypst/i18n.typ": t, traducciones
+#import "_extensions/calote/examtypst/i18n.typ": t, traducciones
 
 // ============================================
 // VARIABLES DEL DOCUMENTO
