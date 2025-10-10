@@ -1,6 +1,7 @@
-# examtypst - Extensión Quarto para crear exámenes con Typst
+# examtypst - Extensión Quarto para crear exámenes con Typst y Html
 
-Extensión de Quarto que facilita la creación de exámenes académicos profesionales usando Typst desde RStudio o Positron.
+Extensión de Quarto que facilita la creación de exámenes académicos profesionales usando Typst desde RStudio o Positron. Desde la versión 0.3.0 también se soporta salida Html (examtypst-html).
+
 
 ## 🚀 Instalación
 
@@ -14,7 +15,7 @@ O con un fichero quarto de ejemplo:
 quarto use template calote/examtypst
 ```
 
-## ✨ Características
+## ✨ Características 
 
 - ✅ Cabecera institucional personalizable con logo
 - ✅ Numeración automática de ejercicios
@@ -31,9 +32,10 @@ quarto use template calote/examtypst
 
 ## 📖 Uso Básico
 
+### Cabecera YAML de Ejemplo para Typst (uso de parámetros en inglés)
+
 ```yaml
 ---
-title: "Examen Final"
 format:
   examtypst-typst:
     department: "Departamento de Matemáticas"
@@ -46,6 +48,34 @@ format:
     lang: "es"
 ---
 ```
+
+
+- Ejemplos: PDF con [examtypst-typst](https://github.com/calote/examtypst/blob/main/template.pdf) y PDF con soluciones activadas [examtypst-typst con soluciones](https://github.com/calote/examtypst/blob/main/template-sol.pdf)
+
+
+### Cabecera YAML de Ejemplo para Html (uso de parámetros en español)
+
+Actualmente para el formato examtypst-html no están todas las posibilidades disponibles que sí tiene Typst.
+
+```yaml
+---
+format:
+  examtypst-html:
+    mostrar-cabecera: true
+    # logo: "logo.png"
+    departmento: "Departamento de Matemáticas"
+    titulacion: "Grado en Matemáticas"
+    asignatura: "Álgebra Lineal"
+    tipo-examen: "Final"
+    fecha-examen: "20 de Junio de 2025"
+    mostrar-soluciones: true
+    soluciones-colapsables: true
+    color-theme: "default"  # default, blue, green, purple, orange, gray
+---
+```
+
+- Ejemplo: HTML con [examtypst-html](https://github.com/calote/examtypst/blob/main/template.html)
+
 
 ## Uso de Parámetros YAML en Español y en Inglés
 
@@ -293,3 +323,26 @@ quarto typst --version
 ## 📞 Soporte
 
 Para reportar bugs o solicitar nuevas características, abre un issue en el repositorio.
+
+
+## 📜 Historial de Cambios
+
+
+- v 0.3.0 (10-10-2025) - Se ha añadido soporte para salida html (examtypst-html).
+
+  Has creado un sistema de ejercicios y soluciones muy completo y profesional para usar con salida Html, con las siguientes características:
+
+✨ **Características implementadas:**
+  - Ejercicios numerados automáticamente con puntuación opcional
+  - Soluciones inline (inmediatas) o al final del documento
+  - Tres formatos de visualización:
+    - Normal (expandido)
+    - Colapsable (acordeón)
+    - Pestañas con badges (con toggle para abrir/cerrar)
+      - Placeholder informativo
+      - Estilos CSS personalizados y elegantes
+      - Animaciones suaves
+  - Totalmente configurable desde el YAML
+
+  Es un filtro muy potente y versátil para documentos educativos en Quarto. 
+

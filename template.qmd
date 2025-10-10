@@ -12,6 +12,18 @@ format:
     #output-file: "template-sol.pdf"
     mostrar-ejercicio-cuadro: false
     ejercicio-salto-linea: false
+  examtypst-html:
+    mostrar-cabecera: true
+    #logo: "logo.png"
+    departmento: "Departamento de Matemáticas"
+    titulacion: "Grado en Matemáticas"
+    asignatura: "Álgebra Lineal"
+    tipo-examen: "Final"
+    fecha-examen: "20 de Junio de 2025"
+    mostrar-soluciones: true
+    soluciones-colapsables: true
+    color-theme: "default"  # default, blue, green, purple, orange, gray
+    embed-resources: true
 ---
 
 
@@ -33,7 +45,6 @@ $$\lim_{x \to 0} \frac{\sin(x)}{x}$$
 
 :::{.espacio-desarrollo arguments="lineas: 5, puntos: false"}
 
-hola
 :::
 
 :::{.solucion}
