@@ -50,7 +50,7 @@ format:
 ```
 
 
-- Ejemplos: PDF con [examtypst-typst](https://github.com/calote/examtypst/blob/main/template.pdf) y PDF con soluciones activadas [examtypst-typst con soluciones](https://github.com/calote/examtypst/blob/main/template-sol.pdf)
+- Ejemplos: PDF con [examtypst-typst](https://raw.githack.com/calote/examtypst/main/template.pdf) y PDF con soluciones activadas [examtypst-typst con soluciones](https://raw.githack.com/calote/examtypst/main/template-sol.pdf)
 
 
 ### Cabecera YAML de Ejemplo para Html (uso de parámetros en español)
