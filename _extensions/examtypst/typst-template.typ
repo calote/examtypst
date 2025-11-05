@@ -1162,6 +1162,166 @@ $endif$
 }
 
 
+// Variable global para almacenar el tipo de opciones actual
+#let opciones-tipo-mode = state("opciones-tipo-mode", "LETRA")
+
+// Variable global para almacenar opciones en pregunta-multiple-md
+#let opciones-temp = state("opciones-temp", ())
+#let correctas-temp = state("correctas-temp", ())
+
+// Función pregunta-multiple-md que acepta el body con #opc
+#let pregunta-multiple-md(
+  enunciado,
+  correctas: "",
+  columnas: 1,
+  numeracion: false,
+  tipo-numeracion: "numero",
+  opciones-tipo: "LETRA",
+  aleatorio: false,
+  semilla: 1,
+  mostrar-solucion: true,
+  solucion: none,
+  explicacion: none,
+  dificultad: none,
+  puntos: none,
+  body
+) = {
+  // Actualizar el estado global del tipo de opciones
+  opciones-tipo-mode.update(opciones-tipo)
+  
+  // Aplicar numeración de la pregunta si se solicita
+  if numeracion {
+    let etiqueta = aplicar-contador(
+      contador-vf, 
+      tipo: tipo-numeracion
+    )
+    context {
+      text(weight: "bold", fill: theme.text-color)[#etiqueta) ]
+    }
+  }
+  
+  // Mostrar puntos si se especifica
+  if puntos != none {
+    text(weight: "bold", fill: theme.text-color)[(#puntos puntos) ]
+  }
+  
+  // Parsear las opciones correctas
+  let opciones-correctas = ()
+  if correctas != "" {
+    opciones-correctas = correctas.split(",").map(x => int(x.trim()))
+  }
+  
+  // Mostrar el enunciado
+  text(fill: theme.text-color)[#enunciado]
+  v(0.3em)
+  
+  // Reiniciar contador de apartados
+  contador-apartados.update(0)
+  
+  // El body contiene las opciones con #opc
+  body
+  
+  // Mostrar solución si está activado y existe
+  if show-solutions and mostrar-solucion and solucion != none {
+    v(0.3em)
+    block(
+      fill: theme.solution-bg,
+      stroke: theme.solution-border + 1pt,
+      inset: 8pt,
+      radius: 4pt,
+      width: 100%,
+      [
+        #text(weight: "bold", fill: theme.solution-border)[Solución: ]
+        #text(fill: theme.text-color)[#solucion]
+      ]
+    )
+  }
+  
+  // Mostrar explicación si está activada y existe
+  if show-solutions and explicacion != none {
+    v(0.3em)
+    block(
+      fill: theme.solution-bg.lighten(50%),
+      stroke: theme.solution-border.lighten(30%) + 1pt,
+      inset: 8pt,
+      radius: 4pt,
+      width: 100%,
+      [
+        #text(weight: "bold", fill: theme.solution-border.darken(10%))[Explicación: ]
+        #text(fill: theme.text-color)[#explicacion]
+      ]
+    )
+  }
+  
+  v(0.5em)
+}
+
+// Función para cada opción (usada por Quarto)
+#let opc(es-correcta: false, body) = {
+  contador-apartados.step()
+  
+  context {
+    let n = contador-apartados.get().first()
+    let tipo-opc = opciones-tipo-mode.get()
+    let etiqueta = generar-etiqueta(n, tipo: tipo-opc)
+    
+    let icono = if show-solutions and es-correcta {
+      text(fill: theme.solution-border, weight: "bold")[#CajaCheck()]
+    } else {
+      text(fill: theme.text-color)[#CajaNoCheck()]
+    }
+    
+    let color-texto = if show-solutions and es-correcta {
+      theme.solution-border
+    } else {
+      theme.text-color
+    }
+    
+    let peso = if show-solutions and es-correcta {
+      "bold"
+    } else {
+      "regular"
+    }
+    
+    // Grid de 3 columnas: checkbox | etiqueta | contenido
+    grid(
+      columns: (auto, auto, 1fr),  // auto, auto, resto del espacio
+      column-gutter: 0.5em,
+      align: (center, left, left),
+      // Columna 1: Checkbox
+      icono,
+      // Columna 2: Etiqueta
+      text(fill: color-texto, weight: peso)[#etiqueta)],
+      // Columna 3: Contenido
+      text(fill: color-texto, weight: peso)[#body]
+    )
+  }
+  v(0.3em)  // Espacio vertical entre opciones
+}
+
+// // Función para cada opción (usada por Quarto)
+// #let opc(es-correcta: false, body) = {
+//   contador-apartados.step()
+//   h(1em)
+//   
+//   context {
+//     let n = contador-apartados.get().first()
+//     let etiqueta = generar-etiqueta(n, tipo: "LETRA")
+//     
+//     if show-solutions and es-correcta {
+//       text(fill: theme.solution-border, weight: "bold")[#CajaCheck() #h(0.5em) #etiqueta) #h(0.2em)]
+//       text(fill: theme.solution-border, weight: "bold")[#body]
+//     } else {
+//       text(fill: theme.text-color)[#CajaNoCheck() #h(0.5em) #etiqueta) #h(0.2em)]
+//       text(fill: theme.text-color)[#body]
+//     }
+//   }
+//   linebreak()
+// }
+// 
+
+
+
 // // Función para verdadero/falso
 // #let verdadero-falso(enunciado, correcta: none) = {
 //   text(fill: theme.text-color)[#enunciado]

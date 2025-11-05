@@ -58,6 +58,7 @@ contributes:
         - Mnewline
         - apartado
         - pregunta-multiple
+        - pregunta-multiple-md
         - verdadero-falso
         - espacio-desarrollo
         - tabla-calificaciones
@@ -75,7 +76,9 @@ contributes:
       
       filters:
         - validate-params.lua
+        - pregunta-multiple.lua
         - _extensions/christopherkenny/typst-function/typst-function.lua
+        
 
     html:
       # Configuración básica HTML
