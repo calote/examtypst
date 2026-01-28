@@ -797,6 +797,40 @@ end
 -- ...resto del código sin cambios...
 
 -- ...resto del código sin cambios...
+-- local function processApartado(div)
+--   if div.classes:includes("apartado") then
+--     local args = parseTypstArguments(div.attributes.arguments)
+--     local letra = args.letra or div.attributes.letra
+--     local tipo = args.tipo or div.attributes.tipo
+--     local content = div.content
+--     
+--     local prefix_text = ""
+--     
+--     if letra and letra ~= "" then
+--       prefix_text = letra .. ") "
+--     elseif tipo then
+--       if tipo == "LETRA" or tipo == "letra" then
+--         prefix_text = getNextApartadoLetra() .. ") "
+--       elseif tipo == "NUMERO" or tipo == "numero" then
+--         prefix_text = getNextApartadoNumero() .. ") "
+--       elseif tipo == "" then
+--         prefix_text = ""
+--       else
+--         prefix_text = getNextApartadoLetra() .. ") "
+--       end
+--     else
+--       prefix_text = getNextApartadoLetra() .. ") "
+--     end
+--     
+--     if prefix_text ~= "" then
+--       local prefix = pandoc.Para({pandoc.Strong({pandoc.Str(prefix_text)})})
+--       table.insert(content, 1, prefix)
+--     end
+--     
+--     return pandoc.Div(content, pandoc.Attr("", {"apartado"}, {}))
+--   end
+-- end
+
 local function processApartado(div)
   if div.classes:includes("apartado") then
     local args = parseTypstArguments(div.attributes.arguments)
@@ -806,6 +840,7 @@ local function processApartado(div)
     
     local prefix_text = ""
     
+    -- Lógica de determinación del texto del prefijo (se mantiene igual)
     if letra and letra ~= "" then
       prefix_text = letra .. ") "
     elseif tipo then
@@ -822,16 +857,27 @@ local function processApartado(div)
       prefix_text = getNextApartadoLetra() .. ") "
     end
     
+    -- LÓGICA MODIFICADA PARA LA MISMA LÍNEA
     if prefix_text ~= "" then
-      local prefix = pandoc.Para({pandoc.Strong({pandoc.Str(prefix_text)})})
-      table.insert(content, 1, prefix)
+      -- Creamos el prefijo como un elemento "Inline" (negrita)
+      local prefix_inline = pandoc.Strong({pandoc.Str(prefix_text)})
+      
+      -- Comprobamos si el primer elemento del contenido es un párrafo
+      if content[1] and (content[1].t == "Para" or content[1].t == "Plain") then
+        -- Insertamos el prefijo al inicio de la lista de inlines del primer párrafo
+        table.insert(content[1].content, 1, prefix_inline)
+        -- Opcional: añadir un espacio extra si prefix_text no lo tiene
+        -- table.insert(content[1].content, 2, pandoc.Space())
+      else
+        -- Si el contenido no empieza por un párrafo (ej. empieza por una tabla o lista),
+        -- creamos un párrafo nuevo para que no se pierda el prefijo.
+        table.insert(content, 1, pandoc.Para({prefix_inline}))
+      end
     end
     
     return pandoc.Div(content, pandoc.Attr("", {"apartado"}, {}))
   end
 end
-
-
 
 
 local function processPreguntaMultiple(div, meta)
