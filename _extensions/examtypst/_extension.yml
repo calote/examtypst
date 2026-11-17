@@ -1,6 +1,6 @@
 title: "examtypst: A Quarto extension for creating exams with Typst y Html"
 author: Pedro Luque
-version: 0.4.0
+version: 0.4.1
 quarto-required: ">=1.6.0"
 editor:
   tools:
@@ -46,6 +46,23 @@ contributes:
       fontsize: 11
       # Logo
       logo: ""
+
+      # Callouts partibles: la plantilla Typst de Quarto define callout()
+      # con breakable: false y una resolución larga desborda la página.
+      # Se redefine a breakable: true vía include-in-header (aparece
+      # DESPUÉS de la definición de Quarto en el .typ generado).
+      # Portado de QP 8756436 para que examtypst-typst no necesite el parche externo.
+      include-in-header:
+        - text: |
+            #let callout_qp(body: [], title: "Callout", background_color: rgb("#dddddd"), icon: none, icon_color: black, body_background_color: white) = {
+              block(breakable: true, fill: background_color, stroke: (paint: icon_color, thickness: 0.5pt, cap: "round"), width: 100%, radius: 2pt,
+                block(inset: 1pt, width: 100%, below: 0pt,
+                  block(fill: background_color, width: 100%, inset: 8pt)[#if icon != none [#icon ]#title] +
+                  if(body != []){ block(inset: 1pt, width: 100%, block(fill: body_background_color, width: 100%, inset: 8pt, body)) }
+                )
+              )
+            }
+            #let callout = callout_qp
       
       functions: 
         - solucion

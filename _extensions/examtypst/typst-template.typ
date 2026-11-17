@@ -1222,9 +1222,11 @@ $endif$
   body
   
   // Mostrar solución si está activado y existe
+  // breakable: true para que una solución larga parta entre páginas (QP 8756436)
   if show-solutions and mostrar-solucion and solucion != none {
     v(0.3em)
     block(
+      breakable: true,
       fill: theme.solution-bg,
       stroke: theme.solution-border + 1pt,
       inset: 8pt,
@@ -1238,9 +1240,11 @@ $endif$
   }
   
   // Mostrar explicación si está activada y existe
+  // breakable: true para que una explicación larga parta entre páginas (QP 8756436)
   if show-solutions and explicacion != none {
     v(0.3em)
     block(
+      breakable: true,
       fill: theme.solution-bg.lighten(50%),
       stroke: theme.solution-border.lighten(30%) + 1pt,
       inset: 8pt,
