@@ -184,6 +184,11 @@
 // Añadir junto a las otras variables
 #let ejercicio-salto-linea = "$if(ejercicio-salto-linea)$$ejercicio-salto-linea$$elseif(exercise-line-break)$$exercise-line-break$$else$false$endif$" == "true"
 
+// Mostrar puntuación junto al encabezado (false en relaciones sin notas).
+// OJO: no usar un condicional pandoc sobre el flag porque con valor false
+// pandoc lo considera falsy y caería al else (defecto true). Se compara el texto.
+#let mostrar-puntos = not ("$mostrar-puntos$" == "false" or "$show-points$" == "false")
+
 
 // ============================================
 // SISTEMA DE CONTADORES GENÉRICO
@@ -661,7 +666,7 @@ $endif$
       [#ejercicio-text #n.]
     }
     
-    if puntos != none {
+    if mostrar-puntos and puntos != none {
       let punto-text = if puntos == 1 {
           t("punto", lang: lang)
         } else {
@@ -828,7 +833,7 @@ $endif$
       text(fill: theme.text-color)[• #body]
     } else {
       text(weight: "bold", fill: theme.text-color)[#etiqueta) ]
-      if puntos != none {
+      if mostrar-puntos and puntos != none {
         let punto-text = if puntos == 1 {
           t("punto", lang: lang)
         } else {
@@ -1200,8 +1205,8 @@ $endif$
     }
   }
   
-  // Mostrar puntos si se especifica
-  if puntos != none {
+  // Mostrar puntos si se especifica (ocultable con mostrar-puntos: false)
+  if mostrar-puntos and puntos != none {
     text(weight: "bold", fill: theme.text-color)[(#puntos puntos) ]
   }
   

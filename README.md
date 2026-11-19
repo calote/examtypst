@@ -264,6 +264,18 @@ format:
     show-ejercicio-cuadro: false
 ```
 
+### Ocultar la puntuación (relaciones de problemas)
+
+```yaml
+format:
+  examtypst-typst:
+    mostrar-puntos: false  # también vale show-points: false
+```
+
+Oculta el `(3 puntos)` del encabezado aunque los bloques lleven
+`puntos: 3`. Vale para `ejercicio`, `apartado` y `pregunta-multiple-md`,
+en Typst y en HTML. Por defecto es `true`.
+
 ### Personalizar Nombre de "Ejercicio"
 
 ```yaml

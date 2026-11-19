@@ -333,8 +333,14 @@ local function processEjercicio(div, meta)
     local header = pandoc.Div({
       pandoc.Header(3, {pandoc.Str(headerText)})
     }, pandoc.Attr("", {"ejercicio-header"}, {}))
-    
-    if puntos ~= "" then
+
+    -- Mostrar puntuación salvo mostrar-puntos: false / show-points: false.
+    -- OJO: no usar (a or b) porque MetaBool(false) es falsy en Lua y
+    -- colapsaría a nil; se distingue nil (ausente, mostrar) de "false".
+    local rawPuntos = meta["mostrar-puntos"]
+    if rawPuntos == nil then rawPuntos = meta["show-points"] end
+    local hidePuntos = rawPuntos ~= nil and pandoc.utils.stringify(rawPuntos) == "false"
+    if puntos ~= "" and not hidePuntos then
       header.content:insert(pandoc.Span({
         pandoc.Str(" (" .. puntos .. " puntos)")
       }, pandoc.Attr("", {"puntos"}, {})))

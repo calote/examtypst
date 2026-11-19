@@ -1,6 +1,6 @@
 title: "examtypst: A Quarto extension for creating exams with Typst y Html"
 author: Pedro Luque
-version: 0.4.1
+version: 0.4.2
 quarto-required: ">=1.6.0"
 editor:
   tools:
@@ -15,6 +15,8 @@ contributes:
       ejercicio-nombre: "ejercicio"
       #show-cabecera: true
       show-solutions: false
+      # Mostrar puntuación junto al encabezado (false en relaciones sin notas)
+      mostrar-puntos: true
       #show-ejercicio-cuadro: false
       show-student-data: false
       ejercicio-salto-linea: true
@@ -107,6 +109,8 @@ contributes:
       show-ejercicio-cuadro: false
       show-student-data: false
       ejercicio-salto-linea: true
+      # Mostrar puntuación junto al encabezado (false en relaciones sin notas)
+      mostrar-puntos: true
 
       # Tema de colores (opcional)
       color-theme: "default"  # default, blue, green, purple, orange, gray
