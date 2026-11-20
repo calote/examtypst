@@ -248,13 +248,19 @@ format:
     show-student-data: true
 ```
 
-### Logo Personalizado
+### Logo Personalizado (escudo)
 
 ```yaml
 format:
   examtypst-typst:
-    logo: "ruta/a/mi-logo.png"
+    escudo: "us.jpg"
 ```
+
+El fichero se busca junto al documento (p. ej. copiado desde la propia
+extensión o desde `source/` de los ejercicios). No uses la clave `logo`:
+es una clave nativa de Quarto (fondo de página) y la cabecera del examen
+no la entiende (la vería como `true`); si la pones, se traslada a
+`escudo` automáticamente con un aviso en la consola.
 
 ### Ocultar Cuadros de Ejercicios
 
@@ -304,13 +310,12 @@ Las contribuciones son bienvenidas. Por favor, abre un issue o pull request en e
 
 ## ⚠️ Solución de Problemas
 
-### Error: Logo no encontrado
+### Error: Logo no encontrado (file not found)
 
-Asegúrate de que el archivo `logo.png` existe en el directorio del documento o especifica la ruta correcta:
-
-```yaml
-logo: "ruta/completa/logo.png"
-```
+Comprueba dos cosas: (1) usa la clave `escudo`, no `logo` (nativa de
+Quarto); (2) evita guiones bajos en la ruta (`mi_logo.png` llega a la
+plantilla como `mi\_logo.png` y no se encuentra): renombra a `milogo.png`
+o `us.jpg` y colócalo junto al documento.
 
 ### Las soluciones no se muestran/ocultan
 

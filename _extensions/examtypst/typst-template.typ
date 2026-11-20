@@ -420,7 +420,11 @@ $endif$
 
 
 // ...existing code...
-#let logo = "$if(escudo)$$escudo$$elseif(logo)$$logo$$else$$endif$"
+// Quarto escapa los guiones bajos al interpolar valores en plantillas
+// (`_extensions/...` llegaría como `\_extensions/...` y el fichero no se
+// encontraría): se deshace el escape aquí. Ver validate-params.lua.
+#let _unesc(s) = s.replace("\\_", "_").replace("\\#", "#")
+#let logo = _unesc("$if(escudo)$$escudo$$elseif(logo)$$logo$$else$$endif$")
 // ...existing code...
 
 #let make-title(fontsize-header: 12pt) = {
